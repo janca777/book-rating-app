@@ -1,0 +1,22 @@
+<div class="card mb-4" *ngIf="book">
+  <div class="card-body bg-light">
+    <img class="img-thumbnail float-end" src="//api.angular.schule/avatar/{{ book.rating }}">
+    <div class="card-title">
+      <h2>
+        {{ book.title }}
+        <br-rating [rating]="book.rating"></br-rating>
+      </h2>
+    </div>
+    <p>{{ book.description }}</p>
+    <p>Preis: {{ book.price | currency:'EUR' }}</p>
+    <a [routerLink]="['/books']">Back</a>
+
+  </div>
+</div>
+
+<!-- <ng-container *ngIf="book">
+  <h3>{{ book.title }}</h3>
+  <p>{{ book.description }}</p>
+</ng-container> -->
+
+
