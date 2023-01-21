@@ -11,54 +11,38 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
   books: Book[] = [];
 
-  constructor(private rs: BookRatingService, private bs: BookStoreService) {
-
-    this.bs.getAll().subscribe(books => {
+  constructor(private bRatingService: BookRatingService, private bStoreService: BookStoreService) {
+    this.bStoreService.getAll().subscribe(books => {
       this.books = books;
     });
-
-    // this.books = [
-    //   {
-    //     isbn: '123',
-    //     title: 'Angular',
-    //     description: 'Das große Praxisbuch',
-    //     rating: 5,
-    //     price: 42.9
-    //   },
-    //   {
-    //     isbn: '456',
-    //     title: 'Vue.js',
-    //     description: 'Das grüne Framework',
-    //     rating: 3,
-    //     price: 36.9
-    //   }
-    // ];
   }
 
   doRateUp(book: Book) {
-    const ratedBook = this.rs.rateUp(book);
+    const ratedBook = this.bRatingService.rateUp(book);
     this.updateList(ratedBook);
   }
 
   doRateDown(book: Book) {
-    const ratedBook = this.rs.rateDown(book);
+    const ratedBook = this.bRatingService.rateDown(book);
     this.updateList(ratedBook);
   }
 
-  doDeleteBook(book: Book) {
-    if (!confirm(`Möchten Sie das Buch "${book.title}" unwiderruflich löschen?`)) {
-      return;
+  confirmDeleteBook(book: Book) {
+    if (confirm(`Das Buch "${book.title}" jetzt löschen?`)) {
+      this.doDeleteBook(book)
     }
+  }
 
-
-    this.bs.deleteBook(book.isbn).subscribe(() => {
-      this.bs.getAll().subscribe(books => this.books = books);
+  doDeleteBook(book: Book) {
+    this.bStoreService.deleteBook(book).subscribe(books => {
+      this.books = books;
     });
   }
 
   private updateList(ratedBook: Book) {
     // const index = findIndex(isbn);
     // this.books[index] = ratedBook;
+
     //.map() erzeugt KEINE Mutation
     this.books = this.books.map(b => {
       if (b.isbn === ratedBook.isbn) {

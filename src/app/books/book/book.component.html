@@ -13,9 +13,7 @@
     <button [disabled]="(book.rating <= MIN)" class="btn btn-green" (click)="doRateDown()"> - </button>
     <button [disabled]="(book.rating >= MAX)" class="btn btn-red" (click)="doRateUp()"> + </button>
 
-    <span class="float-end">
-    <button class="btn btn-outline-danger" (click)="doDeleteBook()">Delete</button>
-    </span>
+    <button class="btn btn-outline-danger float-end" (click)="doDeleteBook()">Delete</button>
 
   </div>
 </div>

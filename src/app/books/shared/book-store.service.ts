@@ -1,5 +1,4 @@
 import { Book } from './book';
-import { getLocaleCurrencyCode } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookStoreService {
-
   private api = 'https://api.angular.schule'
 
   constructor(private httpClient: HttpClient) { }
@@ -17,21 +15,20 @@ export class BookStoreService {
     return this.httpClient.get<Book[]>(this.api + '/books');
   }
 
+  getSinglyByIsbn(isbn: string): Observable<Book> {
+    return this.httpClient.get<Book>(this.api + '/books/' + isbn);
+  }
+
+  searchBook(term: string): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.api + '/books/search/' + term);
+  }
+
   createBook(book: Book): Observable<Book> {
     return this.httpClient.post<Book>(this.api + '/books', book);
   }
 
-  deleteBook(isbn: string): Observable<Book> {
-    return this.httpClient.delete<Book>(this.api + '/books/' + isbn);
-     }
-
-  getByIsbn(isbn: string):  Observable<Book> {
-    return this.httpClient.get<Book>(this.api + '/books/' + isbn);
+  deleteBook(book: Book): Observable<Book[]> {
+    return this.httpClient.delete<Book[]>(this.api + '/books/' + book.isbn);
   }
-
-  searchBook(term: string):  Observable<Book[]> {
-    return this.httpClient.get<Book[]>(this.api + '/books/search/' + term);
-  }
-
 
 }

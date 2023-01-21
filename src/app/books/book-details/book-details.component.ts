@@ -11,21 +11,20 @@ import { ActivatedRoute } from '@angular/router';
 export class BookDetailsComponent {
   book?: Book;
 
-  constructor(private route: ActivatedRoute, private bookSS: BookStoreService) {
+  constructor(private activatedRoute: ActivatedRoute, private bStoreService: BookStoreService) {
     // PULL / synchroner Weg
     // const isbn = this.route.snapshot.paramMap.get('isbn');
     // console.log(isbn);
 
     // PUSH
-    this.route.paramMap.subscribe(params => {
+    this.activatedRoute.paramMap.subscribe(params => {
       const isbn = params.get('isbn') as string;
       console.log(isbn);
 
-      this.bookSS.getByIsbn(isbn).subscribe(book => {
+      this.bStoreService.getSinglyByIsbn(isbn).subscribe(book => {
         this.book = book;
       })
     });
 
   }
-
 }

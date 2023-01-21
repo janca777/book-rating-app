@@ -17,6 +17,7 @@ export class BookComponent {
   @Input() MIN = 1;
   @Input() MAX = 5;
 
+
   doRateDown() {
     this.rateDown.emit(this.book);
   }
