@@ -1,4 +1,4 @@
-<h3>Books currently in stock: {{ books.length }}</h3>
+<h3>Gelistete Bücher insgesamt: {{ books.length }}</h3>
 <br-book
 *ngFor="let book of books; index as i"
 [book]="book"
@@ -8,6 +8,3 @@
 (deleteBook)="confirmDeleteBook($event)"
 (showTitle)="showTitle($event)"
 ></br-book>
-
-
-

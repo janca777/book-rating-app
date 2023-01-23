@@ -1,4 +1,11 @@
 <div class="container">
   <h1>{{ title }}</h1>
+  <nav class="mb-4">
+    <a class="me-2" routerLink="/books" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">Dashboard</a>
+    <a class="me-2" routerLink="/books/create" routerLinkActive="active">Buch anlegen</a>
+    <a  class="me-2" routerLink="/books/search" routerLinkActive="active">Suche</a>
+  </nav>
   <router-outlet></router-outlet>
+  <div id="updatedDateTime"></div>
+
 </div>

@@ -1,0 +1,43 @@
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <label for="isbnInput">ISBN</label>
+  <input id="isbnInput" class="form-control" type="text" formControlName="isbn" />
+  <div class="feedback-error" *ngIf="isInvalid('isbn')">Die ISBN ist ungültig</div>
+  <div class="feedback-error" *ngIf="hasError('isbn', 'required')">Dieses Feld ist eine Pflichtangabe</div>
+  <div class="feedback-error" *ngIf="hasError('isbn', 'minlength')">Die ISBN ist zu kurz</div>
+
+  <pre>{{ bookForm.controls.isbn.errors | json }}</pre>
+
+<div class="form-group">
+  <label for="titleInput">Titel</label>
+<input id="titleInput" class="form-control" type="text" formControlName="title">
+</div>
+<pre>{{ bookForm.controls.title.errors | json }}</pre>
+
+<div class="form-group">
+  <label for="descriptionInput">Description</label>
+<textarea id="descriptionInput" class="form-control" type="text" formControlName="description"> </textarea>
+</div>
+<pre>{{ bookForm.controls.description.errors | json }}</pre>
+
+<div class="form-group">
+  <label for="ratingInput">Rating</label>
+<input id="ratingInput" class="form-control" type="number" formControlName="rating">
+</div>
+<pre>{{ bookForm.controls.rating.errors | json }}</pre>
+
+<div class="form-group">
+  <label for="priceInput">Price</label>
+<input id="priceInput" class="form-control" type="number" formControlName="price">
+</div>
+<pre>{{ bookForm.controls.price.errors | json }}</pre>
+
+</div>
+
+<button type="submit" class="btn btn-green" [disabled]="bookForm.invalid">Abschicken</button>
+
+</form>
+
+<pre>
+{{ bookForm.value | json}}
+</pre>

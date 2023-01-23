@@ -1,8 +1,12 @@
 export interface Book {
   isbn: string,
   title: string,
-  rating: number,
-  //authors: string[],
-  price: number,
   description: string
+  rating: number,
+  price: number,
+  //authors: string[],
+    /*thumbnails: {
+    url: string;
+    title: string
+  }[]*/
 }

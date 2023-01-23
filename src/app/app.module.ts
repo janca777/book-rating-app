@@ -1,5 +1,4 @@
 import { RouterModule } from '@angular/router';
-import { BooksModule } from './books/books.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,9 +13,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BooksModule,
-    HttpClientModule,
-    RouterModule.forChild([{ path: '**', redirectTo: '/books'}]) // Wildcard-Route muss immer ganz unten stehen
+    HttpClientModule
+    //RouterModule.forChild([{ path: '**', redirectTo: '/books'}]) // Wildcard-Route muss immer ganz unten stehen
   ],
   providers: [],
   bootstrap: [AppComponent]

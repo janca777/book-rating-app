@@ -33,9 +33,11 @@ export class DashboardComponent {
       //   return result;
       // });
 
-      this.bStoreService.deleteBook(book.isbn).subscribe((result: Book[]) => {
-        this.books = result;
-      });
+      this.bStoreService.deleteBook(book.isbn).subscribe(result => {
+        this.bStoreService.getAll().subscribe(books => {
+          this.books = books;
+        });
+      })
     }
   }
 
