@@ -1,19 +1,24 @@
 <div class="card mb-4" *ngIf="book">
   <div class="card-body bg-light">
-    <img class="img-thumbnail float-end" src="//api.angular.schule/avatar/{{ book.rating }}">
-    <div class="card-title routerLink" [routerLink]="['.', book.isbn]">
-      <h2>
-        {{ book.title }}
-        <br-rating [rating]="book.rating"></br-rating>
-      </h2>
-    </div>
-    <p class="routerLink" [routerLink]="['.', book.isbn]">{{ book.description }}</p>
+    <span class="bookLink" [routerLink]="['.', book.isbn]">
+      <img class="img-thumbnail float-end" src="//api.angular.schule/avatar/{{ book.rating }}">
+      <div class="card-title">
+        <h2>
+          {{ book.title }}<br-rating [rating]="book.rating"></br-rating>
+        </h2>
+      </div>
+      <p >{{ book.description }}</p>
+  </span>
+
     <p>Preis: {{ book.price | currency:'EUR' }}</p>
 
     <button [disabled]="(book.rating <= MIN)" class="btn btn-green" (click)="doRateDown()"> - </button>
     <button [disabled]="(book.rating >= MAX)" class="btn btn-red" (click)="doRateUp()"> + </button>
 
-    <button class="btn btn-outline-danger float-end" (click)="doDeleteBook()">Delete</button>
+    <span class="float-end">
+      <!-- <button class="btn btn-outline-warning" (click)="doShowTitle()" >Alert book-title</button> -->
+      <button class="btn btn-outline-danger" (click)="doDeleteBook()">Delete</button>
+    </span>
 
   </div>
 </div>

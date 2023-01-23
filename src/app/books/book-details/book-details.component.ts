@@ -19,9 +19,8 @@ export class BookDetailsComponent {
     // PUSH
     this.activatedRoute.paramMap.subscribe(params => {
       const isbn = params.get('isbn') as string;
-      console.log(isbn);
-
-      this.bStoreService.getSinglyByIsbn(isbn).subscribe(book => {
+      //console.log(isbn);
+      this.bStoreService.getSingleByIsbn(isbn).subscribe(book => {
         this.book = book;
       })
     });

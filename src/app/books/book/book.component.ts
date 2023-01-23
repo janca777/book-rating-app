@@ -9,14 +9,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class BookComponent {
   @Input() book?: Book;
+  @Input() MIN = 1;
+  @Input() MAX = 5;
 
   @Output() rateUp = new EventEmitter<Book>();
   @Output() rateDown = new EventEmitter<Book>();
   @Output() deleteBook = new EventEmitter<Book>();
-
-  @Input() MIN = 1;
-  @Input() MAX = 5;
-
+  @Output() showTitle = new EventEmitter<Book>();
 
   doRateDown() {
     this.rateDown.emit(this.book);
@@ -30,5 +29,8 @@ export class BookComponent {
     this.deleteBook.emit(this.book);
   }
 
+  doShowTitle() {
+    this.showTitle.emit(this.book);
+  }
 
 }

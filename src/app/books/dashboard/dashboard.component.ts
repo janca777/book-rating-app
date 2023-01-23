@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
   books: Book[] = [];
 
-  constructor(private bRatingService: BookRatingService, private bStoreService: BookStoreService) {
+  constructor(protected bRatingService: BookRatingService, private bStoreService: BookStoreService) {
     this.bStoreService.getAll().subscribe(books => {
       this.books = books;
     });
@@ -28,15 +28,19 @@ export class DashboardComponent {
   }
 
   confirmDeleteBook(book: Book) {
-    if (confirm(`Das Buch "${book.title}" jetzt löschen?`)) {
-      this.doDeleteBook(book)
+    if (confirm(`Soll das Buch "${book.title}" gelöscht werden?`)) {
+      // this.books = this.bStoreService.deleteBook(book.isbn).subscribe((result: Book[]) => {
+      //   return result;
+      // });
+
+      this.bStoreService.deleteBook(book.isbn).subscribe((result: Book[]) => {
+        this.books = result;
+      });
     }
   }
 
-  doDeleteBook(book: Book) {
-    this.bStoreService.deleteBook(book).subscribe(books => {
-      this.books = books;
-    });
+  showTitle(book: Book) {
+    window.alert(`The title of the book is "${book.title}"`);
   }
 
   private updateList(ratedBook: Book) {

@@ -2,9 +2,11 @@
 <br-book
 *ngFor="let book of books; index as i"
 [book]="book"
+[MAX]="bRatingService.MAX"
 (rateUp)="doRateUp($event)"
 (rateDown)="doRateDown($event)"
 (deleteBook)="confirmDeleteBook($event)"
+(showTitle)="showTitle($event)"
 ></br-book>
 
 

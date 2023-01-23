@@ -6,17 +6,20 @@ import { Injectable } from '@angular/core';
 })
 export class BookRatingService {
 
+  MIN = 1;
+  MAX = 6;
+
   rateUp(book: Book): Book {
     return {
       ...book,
-      rating: Math.min(book.rating + 1, 5)
+      rating: Math.min(book.rating + 1, this.MAX)
     };
   }
 
   rateDown(book: Book): Book {
     return {
       ...book,
-      rating: Math.max(book.rating - 1, 1)
+      rating: Math.max(book.rating - 1, this.MIN)
     };
   }
 

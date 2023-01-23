@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookStoreService {
-  private api = 'https://api.angular.schule'
+  readonly api = 'https://api.angular.schule'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class BookStoreService {
     return this.httpClient.get<Book[]>(this.api + '/books');
   }
 
-  getSinglyByIsbn(isbn: string): Observable<Book> {
+  getSingleByIsbn(isbn: string): Observable<Book> {
     return this.httpClient.get<Book>(this.api + '/books/' + isbn);
   }
 
@@ -27,8 +27,9 @@ export class BookStoreService {
     return this.httpClient.post<Book>(this.api + '/books', book);
   }
 
-  deleteBook(book: Book): Observable<Book[]> {
-    return this.httpClient.delete<Book[]>(this.api + '/books/' + book.isbn);
+  deleteBook(isbn: string): Observable<Book[]> {
+    //copied from getSingleByIsbn
+    return this.httpClient.delete<Book[]>(this.api + '/books/' + isbn);
   }
 
 }
