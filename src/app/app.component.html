@@ -1,11 +1,25 @@
 <div class="container">
   <h1>{{ title }}</h1>
-  <nav class="mb-4">
-    <a class="me-2" routerLink="/books" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">Dashboard</a>
-    <a class="me-2" routerLink="/books/create" routerLinkActive="active">Buch anlegen</a>
-    <a  class="me-2" routerLink="/books/search" routerLinkActive="active">Suche</a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+        <a class="nav-link" routerLink="/books" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" routerLink="/books/create" routerLinkActive="active">Buch anlegen</a>
+        </li>
+        <li class="nav-item">
+        <a  class="nav-link" routerLink="/books/search" routerLinkActive="active">Suche</a>
+        </li>
+        </ul>
+    </div>
   </nav>
+
   <router-outlet></router-outlet>
-  <div id="updatedDateTime"></div>
+  <div>{{ now | date:'d. MMM y, HH:mm:ss ' }}</div>
 
 </div>

@@ -7,8 +7,8 @@ import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   { path: '' , component: DashboardComponent},
-  { path: 'search' , component: SearchComponent},
   { path: 'create' , component: CreateComponent},
+  { path: 'search' , component: SearchComponent},
   { path: ':isbn' , component: BookDetailsComponent}
 ];
 

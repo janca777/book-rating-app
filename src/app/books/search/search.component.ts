@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+  searchControl = new FormControl('', {nonNullable: true});
+
+  constructor() {
+    this.searchControl.valueChanges.subscribe(e => console.log(e));
+  }
 
 }
