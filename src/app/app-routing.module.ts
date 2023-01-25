@@ -1,6 +1,6 @@
-import { BooksModule } from './books/books.module';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, Injectable } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { RouterModule, Routes, TitleStrategy, RouterStateSnapshot } from '@angular/router';
 
 
 const routes: Routes = [
@@ -8,12 +8,25 @@ const routes: Routes = [
   { path: '', redirectTo: '/books', pathMatch: 'full' },
   {
     path: 'books',
-  loadChildren: () => import('./books/books.module').then(m => m.BooksModule)
-}
+    loadChildren: () => import('./books/books.module').then(m => m.BooksModule)
+  }
 ];
+
+@Injectable()
+export class CustomTitleStrategy extends TitleStrategy {
+  constructor(private title: Title) {
+     super();
+     }
+
+  updateTitle(routerState: RouterStateSnapshot) {
+    const title = this.buildTitle(routerState) ?? 'Book Rating!';
+    this.title.setTitle(title);
+  }
+}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [{ provide: TitleStrategy, useClass: CustomTitleStrategy }]
 })
 export class AppRoutingModule { }

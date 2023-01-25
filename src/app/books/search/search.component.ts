@@ -1,5 +1,10 @@
+import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { BookStoreService } from '../shared/book-store.service';
+import { debounceTime, Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { Book } from '../shared/book';
 
 @Component({
   selector: 'br-search',
@@ -9,8 +14,13 @@ import { Component } from '@angular/core';
 export class SearchComponent {
   searchControl = new FormControl('', {nonNullable: true});
 
-  constructor() {
-    this.searchControl.valueChanges.subscribe(e => console.log(e));
-  }
+  private bStoreService = inject(BookStoreService)
+  books$: Observable<Book[]> = this.searchControl.valueChanges.pipe(
+    filter(term => term.length >= 3),
+    debounceTime(500),
+    distinctUntilChanged(),
+    switchMap(term => this.bStoreService.searchBook(term))
+  );
+
 
 }

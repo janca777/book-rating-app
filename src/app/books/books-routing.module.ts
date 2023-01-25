@@ -7,9 +7,9 @@ import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
   { path: '' , component: DashboardComponent},
-  { path: 'create' , component: CreateComponent},
+  { path: 'create' , component: CreateComponent, title: 'Create Book'},
   { path: 'search' , component: SearchComponent},
-  { path: ':isbn' , component: BookDetailsComponent}
+  { path: ':isbn' , component: BookDetailsComponent, title: 'Book Details'}
 ];
 
 @NgModule({
