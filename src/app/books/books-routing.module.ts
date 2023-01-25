@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: '' , component: DashboardComponent},
   { path: 'create' , component: CreateComponent, title: 'Create Book'},
   { path: 'search' , component: SearchComponent},
-  { path: ':isbn' , component: BookDetailsComponent, title: 'Book Details'}
+  { path: ':isbn' , component: BookDetailsComponent, title: 'Book Details'},
+  { path: 'search/:isbn',   redirectTo: ':isbn', pathMatch: 'full' },
 ];
 
 @NgModule({

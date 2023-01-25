@@ -28,27 +28,32 @@ export class CreateComponent {
       nonNullable: true,
       validators: [
         Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(80)
-      ]
+        Validators.minLength(5),
+        Validators.maxLength(60)
+      ],
     }),
-    description: new FormControl('', { nonNullable: true }),
+    description: new FormControl('', { nonNullable: true,
+      validators: [
+        Validators.required,
+        Validators.minLength(20),
+        Validators.maxLength(250)
+      ],
+    }),
     rating: new FormControl(1, {
       nonNullable: true,
       validators: [
         Validators.required,
-        Validators.min(1), //muss noch injected werden
-        Validators.max(5)
+        Validators.pattern(/^[1-5]*$/)
       ]
     }),
     price: new FormControl(0, {
       nonNullable: true,
       validators: [
         Validators.required,
-        Validators.min(0)
+        Validators.min(1)
       ]
     }),
-  })
+  }, { updateOn: 'blur' })
 
   isInvalid(controlName: string): boolean {
     const control = this.bookForm.get(controlName);
